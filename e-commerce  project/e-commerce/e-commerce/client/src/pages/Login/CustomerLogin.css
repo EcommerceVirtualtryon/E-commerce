@@ -1,0 +1,58 @@
+.customer-login-page {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 30px;
+  background: linear-gradient(to right, #ffe5ec, #fff);
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.customer-login-page input {
+  width: 100%;
+  padding: 10px;
+  margin: 12px 0;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+}
+
+.customer-login-page button {
+  width: 100%;
+  padding: 10px;
+  background: #f97316;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.customer-login-page button:hover {
+  background: #0056b3;
+}
+
+
+ /*forgot password already have an account register */
+
+/* Common styling for links */
+.forgot-password-link,
+.register-link {
+  display: inline-block;
+  margin: 8px 0;
+  font-size: 14px;
+  color: #007bff; /* Bootstrap blue-ish color */
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+/* Hover effect */
+.forgot-password-link:hover,
+.register-link:hover {
+  color: #0056b3; /* Darker blue on hover */
+  text-decoration: underline;
+}
+
+/* Optional: add spacing between the two links if they appear close */
+.forgot-password-link {
+  margin-bottom: 12px;
+}
