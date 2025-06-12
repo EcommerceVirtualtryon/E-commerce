@@ -64,6 +64,7 @@ mongoose.connect('mongodb+srv://eommerce:ecommerce@eocommerce.hhlvxng.mongodb.ne
 .catch(err => {
   console.error('❌ MongoDB Connection Error:', err);
 });
+naveen
 
 
 // Simple Schema (optional)
