@@ -87,6 +87,7 @@ const CustomerDashboard = () => {
     logout();
     navigate('/');
   };
+  
 
   // If on /dashboard/customer exactly, show dashboard summary
   const isOnDashboardHome = location.pathname === '/dashboard/customer';
