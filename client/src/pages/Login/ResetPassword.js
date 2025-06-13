@@ -25,7 +25,7 @@ const ResetPassword = () => {
     e.preventDefault();
     if (!token) return; // prevent submit without token
     try {
-      const res = await axios.post('http://localhost:5000/api/reset-password', {
+      const res = await axios.post('https://ecommerce-virtualtryon-backend.onrender.com/api/reset-password', {
         token,
         newPassword,
       });
