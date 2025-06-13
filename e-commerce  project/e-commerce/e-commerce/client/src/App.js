@@ -129,6 +129,8 @@ import ResetPassword from './pages/Login/ResetPassword';
  
 import MyOrders from './pages/Dashboard/MyOrders';
 import Account from './pages/Dashboard/Account';
+import CustomerLayout from './pages/Dashboard/CustomerLayout';
+
 
 const Layout = () => {
   const location = useLocation();
@@ -156,12 +158,12 @@ const Layout = () => {
   );
 };
 
-function App() {
+/*function App() {
   return (
     <Router>
       <Routes>
-        {/* Wrap all in Layout */}
-        <Route path="/" element={<Layout />}>
+        {/* Wrap all in Layout */
+        /*<Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="login/customer" element={<CustomerLogin />} />
           <Route path="login/b2b" element={<B2BLogin />} />
@@ -174,8 +176,36 @@ function App() {
           <Route path="tryon" element={<AvatarTryOn />} />
           <Route path="dashboard/business" element={<BusinessDashboard />} />
           <Route path="dashboard/customer" element={<CustomerDashboard />} />
-          <Route path="/dashboard/orders" element={<MyOrders />} />
-        <Route path="/dashboard/account" element={<Account />} />
+          <Route path="dashboard/orders" element={<MyOrders />} />
+        <Route path="dashboard/account" element={<Account />} />
+        </Route>
+      </Routes>
+    </Router>
+  );
+}*/
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="login/customer" element={<CustomerLogin />} />
+          <Route path="login/b2b" element={<B2BLogin />} />
+          <Route path="register" element={<UnifiedRegister />} />
+          <Route path="forgot-password" element={<ForgotPassword />} />
+          <Route path="reset-password" element={<ResetPassword />} />
+          <Route path="products" element={<ProductList />} />
+          <Route path="product/:id" element={<ProductDetail />} />
+          <Route path="cart" element={<Cart />} />
+          <Route path="tryon" element={<AvatarTryOn />} />
+          <Route path="dashboard/business" element={<BusinessDashboard />} />
+
+          {/* ✅ Nest customer dashboard routes */}
+          <Route path="dashboard/customer" element={<CustomerDashboard />}>
+            <Route path="orders" element={<MyOrders />} />
+            <Route path="account" element={<Account />} />
+          </Route>
         </Route>
       </Routes>
     </Router>

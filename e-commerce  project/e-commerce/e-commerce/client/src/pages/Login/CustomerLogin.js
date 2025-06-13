@@ -102,6 +102,7 @@ import './CustomerLogin.css';*/
 export default CustomerLogin;*/
 
  
+ 
 const CustomerLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -111,27 +112,31 @@ const CustomerLogin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+
     try {
       const res = await fetch('http://localhost:5000/api/customer/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
+
       const data = await res.json();
+
       if (res.ok) {
-        // Save token and user info in localStorage
-       localStorage.setItem('user', JSON.stringify({
-  role: 'customer',
-  email: data.user.email,
-  fullName: data.user.name || data.user.email,
-}));
+        const user = data.user; // ✅ FIX: define the user
 
-// ✅ Save customer ID for future API calls
-localStorage.setItem('customerId', data.user._id);
+        // ✅ Save user data in localStorage
+        localStorage.setItem('user', JSON.stringify({
+          id: user._id,
+          email: user.email,
+          fullName: user.fullName,
+          role: user.role,
+        }));
 
+        // ✅ Save customer ID separately if needed
+        localStorage.setItem('customerId', user._id);
 
-
-
+        // Navigate to customer dashboard
         navigate('/dashboard/customer');
       } else {
         setError(data.message || 'Login failed');
@@ -163,11 +168,9 @@ localStorage.setItem('customerId', data.user._id);
         <Link to="/register" className="register-link">Don't have an account? Register</Link><br />
         <button type="submit">Login</button>
       </form>
-      {error && <p style={{color: 'red'}}>{error}</p>}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
   );
 };
 
 export default CustomerLogin;
-
-

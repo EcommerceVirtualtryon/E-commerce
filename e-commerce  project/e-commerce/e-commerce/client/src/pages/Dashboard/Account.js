@@ -7,9 +7,15 @@ const Account = () => {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
-    const customerId = user?.id; // Save user ID in localStorage during login
+    const customerId = user?.id;
 
-    if (!customerId) return;
+    console.log('Customer ID:', customerId); // ✅ Debug log
+
+    if (!customerId) {
+      console.error('Customer ID not found in localStorage');
+      setLoading(false);
+      return;
+    }
 
     axios.get(`http://localhost:5000/api/customer/${customerId}`)
       .then(res => {
@@ -17,20 +23,30 @@ const Account = () => {
         setLoading(false);
       })
       .catch(err => {
-        console.error('Error fetching account info:', err);
+        console.error('Error fetching account info:', err); // ✅ Show exact error
         setLoading(false);
       });
   }, []);
 
   if (loading) return <p>Loading account info...</p>;
+  if (!accountInfo) return <p>Failed to load account info.</p>;
 
   return (
     <div>
       <h2>Account Info</h2>
-      <p><strong>Name:</strong> {accountInfo.name}</p>
+      <p><strong>Name:</strong> {accountInfo.fullName}</p>
       <p><strong>Email:</strong> {accountInfo.email}</p>
     </div>
   );
 };
 
 export default Account;
+
+
+
+
+
+
+
+
+
