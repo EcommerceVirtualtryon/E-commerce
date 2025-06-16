@@ -22,22 +22,23 @@ const ResetPassword = () => {
   }, [token, navigate]);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!token) return; // prevent submit without token
-    try {
-      const res = await axios.post('https://ecommerce-virtualtryon-backend.onrender.com/api/reset-password', {
-        token,
-        newPassword,
-      });
-      setMessage(res.data.message);
-      setTimeout(() => {
-       navigate('/login/customer');
- // redirect to login after success
-      }, 3000);
-    } catch (error) {
-      setMessage(error.response?.data?.message || 'Something went wrong');
-    }
-  };
+  e.preventDefault();
+  if (!token) return;
+
+  try {
+    const res = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/reset-password`, {
+      token,
+      newPassword,
+    });
+    setMessage(res.data.message);
+    setTimeout(() => {
+      navigate('/login/customer');
+    }, 3000);
+  } catch (error) {
+    setMessage(error.response?.data?.message || 'Something went wrong');
+  }
+};
+
 
   return (
     <div className="reset-container">
